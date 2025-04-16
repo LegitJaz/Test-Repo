@@ -21,6 +21,11 @@ jobs:
             echo "You need to provide a file or files to send."
             exit 1
           fi
-          curl -H 'Content-Type: multipart/form-data' \
-          -X POST \
-          -F "file=@$FILES" $DISCORD_WEBHOOK
+          for f in $FILES; do
+            if [[ ! -f "$f" ]]; then
+              echo "The variable '$f' is not a file or does not exist. Files must not have a space in the name."
+              exit 1
+            curl -H 'Content-Type: multipart/form-data' \
+            -X POST \
+            -F "file=@$f" $DISCORD_WEBHOOK
+          done
