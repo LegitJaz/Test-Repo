@@ -1,0 +1,19 @@
+name: Upload to Discord
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  github-action:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Send file to discord channel
+      uses: sinshutu/upload-to-discord@v2.0.0
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      with:
+        args: README.md
