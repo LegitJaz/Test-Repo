@@ -21,10 +21,6 @@ jobs:
             echo "You need to provide a file or files to send."
             exit 1
           fi
-          echo $FILES
-          for f in $FILES; do
-            echo $f
-            curl -H 'Content-Type: multipart/form-data' \
-            -X POST \
-            -F "file=@$f" $DISCORD_WEBHOOK
-          done
+          curl -H 'Content-Type: multipart/form-data' \
+          -X POST \
+          -F "file=@$FILES" $DISCORD_WEBHOOK
