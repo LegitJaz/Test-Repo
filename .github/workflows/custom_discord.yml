@@ -17,8 +17,12 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           FILES: ${{ secrets.PATH_TO_FILES }}
         run: |
+          if [[ -z "$FILES" ]]; then
+            echo "You need to provide a file or files to send."
+            exit 1
+          fi
           for f in $FILES; do
-            curl -H "Content-Type: multipart/form-data" \
+            curl -H 'Content-Type: multipart/form-data' \
             -X POST \
-            -F file=@$f $DISCORD_WEBHOOK
+            -F file='@$f' $DISCORD_WEBHOOK
           done
