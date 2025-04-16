@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Send file to discord channel
-      uses: sinshutu/upload-to-discord@v2.0.0
+      uses: sinshutu/upload-to-discord@latest
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       with:
