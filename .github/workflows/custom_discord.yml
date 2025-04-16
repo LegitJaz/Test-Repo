@@ -17,6 +17,10 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           FILES: ${{ secrets.PATH_TO_FILES }}
         run: |
+          if [[ -z "$DISCORD_WEBHOOK" ]]; then
+            echo "Set the DISCORD_WEBHOOK env variable."
+            exit 1
+          fi
           if [[ -z "$FILES" ]]; then
             echo "You need to provide a file or files to send."
             exit 1
