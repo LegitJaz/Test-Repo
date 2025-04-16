@@ -15,7 +15,7 @@ jobs:
       - name: Send file README.md to discord channel
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          FILES: ${{ secrets.FILES }}
+          FILES: ${{ secrets.PATH_TO_FILES }}
         run: |
           for f in $FILES; do
             curl -H "Content-Type: multipart/form-data" \
