@@ -22,9 +22,6 @@ jobs:
             exit 1
           fi
           for f in $FILES; do
-            if [[ ! -f "$f" ]]; then
-              echo "The variable '$f' is not a file or does not exist. Files must not have a space in the name."
-              exit 1
             curl -H 'Content-Type: multipart/form-data' \
             -X POST \
             -F "file=@$f" $DISCORD_WEBHOOK
