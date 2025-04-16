@@ -20,5 +20,5 @@ jobs:
           for f in $FILES; do
             curl -H "Content-Type: multipart/form-data" \
             -X POST \
-            -F "file=@$f" $DISCORD_WEBHOOK
+            -F file=@$f $DISCORD_WEBHOOK
           done
