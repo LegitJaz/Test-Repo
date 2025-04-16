@@ -1,0 +1,24 @@
+name: Upload to Discord(Custom)
+
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Send file README.md to discord channel
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          FILES: ${{ secrets.FILES }}
+        run: |
+          for f in $FILES; do
+            curl -H "Content-Type: multipart/form-data" \
+            -X POST \
+            -F "file=@$f" $DISCORD_WEBHOOK
+          done
